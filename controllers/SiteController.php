@@ -13,11 +13,8 @@ class SiteController extends Controller
 {
     public function beforeAction($action){
         if (parent::beforeAction($action)){
-
             return true;
         };
-
-
     }
 
     public function behaviors()
@@ -25,13 +22,19 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['contact','index'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+//                        'actions' => ['logout'],
+                        'allow' => false,
+                        'verbs' => ['POST'],
+                    ],
+                    [
+//                        'actions' => ['contacts'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+
                 ],
             ],
             'verbs' => [
@@ -79,7 +82,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
@@ -101,8 +103,4 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionPhonebook(){
-        return $this->render('phonebook_list');
-
-    }
 }

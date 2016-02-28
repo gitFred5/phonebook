@@ -11,6 +11,15 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    public function beforeAction($action){
+        if (parent::beforeAction($action)){
+
+            return true;
+        };
+
+
+    }
+
     public function behaviors()
     {
         return [
@@ -90,5 +99,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionPhonebook(){
+        return $this->render('phonebook_list');
+
     }
 }

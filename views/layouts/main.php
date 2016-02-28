@@ -45,7 +45,13 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
 
-            Yii::$app->user->isGuest ? '' : ['label' => 'Телефонная книга', 'url' => ['/site/phonebook']],
+            Yii::$app->user->isGuest ? '' : ['label' => 'Телефонная книга', /*'url' => ['/phonebook/list']*/
+                'items'=>[
+                    ['label' => 'Контакты', 'url' => ['/phonebook/list']],
+                    ['label' => 'Офисы', 'url' => ['/phonebook/offices']],
+                    ['label' => 'Телефонные номера', 'url' => ['/phonebook/numbers']]
+                ]
+            ],
 //            ['label' => 'Contact', 'url' => ['/site/contact']],
 
             // Если юзер не авторизован

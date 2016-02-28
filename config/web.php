@@ -38,16 +38,23 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => 'index',
+                    'route' => 'site/index',
+                ],
             ],
         ],
 
     ],
     'params' => $params,
+];
+
+$config['modules']['phonebook'] = [
+    'class'=>'app\modules\phonebook\Phonebook'
 ];
 
 if (YII_ENV_DEV) {
